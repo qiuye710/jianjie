@@ -16,6 +16,21 @@
     />
     <meta property="og:type" content="website" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <style>
+      /* Prevent the accessibility skip link from flashing before Vite loads CSS. */
+      .skip-link {
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        z-index: 1000;
+        min-height: 44px;
+        padding: 10px 16px;
+        background: #111214;
+        color: #fff;
+        transform: translateY(-150%);
+      }
+      .skip-link:focus { transform: translateY(0); }
+    </style>
     <title>秋野｜AI 产品创作者</title>
   </head>
   <body>

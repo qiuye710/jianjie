@@ -40,6 +40,33 @@ const iconSet = {
 let revealObserver;
 let previousView = 'home';
 let currentLightbox = null;
+let entryIntroTimer;
+
+const entryIntroTemplate = () => `
+  <section class="entry-intro" aria-label="秋野作品集入场动画">
+    <div class="entry-intro__topline" aria-hidden="true">
+      <span>QIUYE / 01</span>
+      <span>AI PRODUCT CREATOR</span>
+    </div>
+    <div class="entry-intro__stage" aria-hidden="true">
+      <span class="entry-intro__panel entry-intro__panel--one">
+        ${picture(projects[1].cover, { loading: 'eager', fetchPriority: 'high', className: 'entry-intro__image' })}
+      </span>
+      <span class="entry-intro__panel entry-intro__panel--two">
+        ${picture(projects[0].cover, { loading: 'eager', fetchPriority: 'high', className: 'entry-intro__image' })}
+      </span>
+      <span class="entry-intro__panel entry-intro__panel--three">
+        ${picture(projects[2].cover, { loading: 'eager', fetchPriority: 'high', className: 'entry-intro__image' })}
+      </span>
+      <p class="entry-intro__name">秋野</p>
+      <p class="entry-intro__caption">把想法变成可体验的作品</p>
+    </div>
+    <div class="entry-intro__bottomline">
+      <span class="entry-intro__progress" aria-hidden="true"><i></i></span>
+      <button class="entry-intro__skip" type="button" data-intro-skip>跳过动画</button>
+    </div>
+  </section>
+`;
 
 const icon = (name, className = '') =>
   `<i data-lucide="${name}" class="${className}" aria-hidden="true"></i>`;
@@ -52,6 +79,42 @@ const hydrateIcons = () => {
       'aria-hidden': 'true',
     },
   });
+};
+
+const dismissEntryIntro = (immediate = false) => {
+  const intro = document.querySelector('.entry-intro');
+  if (!intro) return;
+  window.clearTimeout(entryIntroTimer);
+  document.body.classList.remove('entry-intro-open');
+  intro.classList.add('is-leaving');
+  window.setTimeout(() => intro.remove(), immediate ? 0 : 520);
+};
+
+const setupEntryIntro = (hash, cameFromDetail) => {
+  const hasSeenIntro = sessionStorage.getItem('qiuye-entry-intro') === 'seen';
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isDeepLink = hash && hash !== '#top';
+  if (hasSeenIntro || reducedMotion || cameFromDetail || isDeepLink) return;
+
+  app.insertAdjacentHTML('afterend', entryIntroTemplate());
+  const intro = document.querySelector('.entry-intro');
+  document.body.classList.add('entry-intro-open');
+  window.requestAnimationFrame(() => intro.classList.add('is-active'));
+
+  const complete = () => {
+    sessionStorage.setItem('qiuye-entry-intro', 'seen');
+    dismissEntryIntro();
+  };
+
+  intro.querySelector('[data-intro-skip]').addEventListener('click', complete);
+  window.addEventListener(
+    'keydown',
+    (event) => {
+      if (event.key === 'Escape') complete();
+    },
+    { once: true },
+  );
+  entryIntroTimer = window.setTimeout(complete, 1850);
 };
 
 const picture = (
@@ -573,6 +636,7 @@ const restoreHomePosition = (hash, cameFromDetail) => {
 };
 
 const renderRoute = () => {
+  dismissEntryIntro(true);
   closeLightbox();
   const hash = decodeURIComponent(window.location.hash || '');
   const match = hash.match(/^#\/work\/([a-z-]+)$/);
@@ -601,6 +665,7 @@ const renderRoute = () => {
   previousView = 'home';
   bindCommonInteractions();
   restoreHomePosition(hash, cameFromDetail);
+  setupEntryIntro(hash, cameFromDetail);
 };
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
