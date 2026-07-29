@@ -1728,11 +1728,12 @@ li {
 @media (max-width: 680px) {
   :root {
     --header-height: 64px;
-    --gutter: 18px;
+    --gutter: 20px;
   }
 
   body {
-    font-size: 15px;
+    font-size: 16px;
+    line-height: 1.65;
   }
 
   .site-header__inner {
@@ -1749,7 +1750,8 @@ li {
   }
 
   .primary-nav a {
-    min-width: 54px;
+    min-width: 50px;
+    font-size: 13px;
   }
 
   .hero {
@@ -1767,14 +1769,14 @@ li {
   }
 
   .hero-copy {
-    top: 28px;
+    top: 26px;
     left: var(--gutter);
     width: calc(100% - (var(--gutter) * 2));
   }
 
   .hero-copy .eyebrow {
     margin-bottom: 10px;
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .hero-copy h1 {
@@ -1783,32 +1785,32 @@ li {
   }
 
   .hero-roleline {
-    margin-top: 12px;
-    font-size: 19px;
+    margin-top: 14px;
+    font-size: 18px;
   }
 
   .hero-lead {
     max-width: 310px;
-    margin-top: 8px;
-    font-size: 14px;
-    line-height: 1.6;
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.65;
   }
 
   .hero-actions {
     gap: 8px;
-    margin-top: 14px;
+    margin-top: 16px;
   }
 
   .hero-actions .button {
-    min-height: 44px;
-    padding: 10px 13px;
-    font-size: 12px;
+    min-height: 48px;
+    padding: 12px 14px;
+    font-size: 13px;
   }
 
   .hero-worktable {
     top: auto;
-    bottom: 27px;
-    height: 45%;
+    bottom: 34px;
+    height: 42%;
   }
 
   .hero-work--browser {
@@ -1843,9 +1845,11 @@ li {
   }
 
   .hero-note {
-    bottom: 6px;
+    bottom: 8px;
     left: var(--gutter);
-    font-size: 9px;
+    max-width: calc(100% - (var(--gutter) * 2));
+    font-size: 10px;
+    line-height: 1.3;
   }
 
   .section-band {
@@ -1854,7 +1858,7 @@ li {
 
   .section-heading {
     display: block;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
 
   .section-heading .eyebrow {
@@ -1873,7 +1877,7 @@ li {
 
   .project-row {
     display: block;
-    padding-block: 28px 44px;
+    padding-block: 28px 40px;
   }
 
   .project-row__meta,
@@ -1881,7 +1885,7 @@ li {
     flex-direction: row;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   .project-number {
@@ -1904,7 +1908,7 @@ li {
 
   .project-row__copy,
   .project-row:nth-child(even) .project-row__copy {
-    padding-top: 24px;
+    padding-top: 20px;
   }
 
   .project-row__copy .project-status {
@@ -1913,7 +1917,7 @@ li {
 
   .project-row__copy h3 {
     margin-bottom: 14px;
-    font-size: 29px;
+    font-size: 28px;
   }
 
   .capabilities__inner,
@@ -1933,7 +1937,7 @@ li {
   }
 
   .capability {
-    min-height: 190px;
+    min-height: 178px;
     padding: 24px;
   }
 
@@ -1946,7 +1950,7 @@ li {
     align-items: end;
     justify-content: space-between;
     gap: 20px;
-    margin-bottom: 58px;
+    margin-bottom: 48px;
   }
 
   .about-kicker__mark {
@@ -1982,7 +1986,8 @@ li {
   }
 
   .contact-section {
-    padding-block: 72px;
+    padding-top: 72px;
+    padding-bottom: max(72px, calc(48px + env(safe-area-inset-bottom)));
   }
 
   .contact-layout h2 {
@@ -1995,7 +2000,7 @@ li {
   }
 
   .contact-action strong {
-    font-size: 23px;
+    font-size: 21px;
   }
 
   .site-footer__inner {
@@ -2152,6 +2157,44 @@ li {
 
   .project-fact span {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  .brand-link {
+    gap: 8px;
+  }
+
+  .brand-name {
+    font-size: 15px;
+  }
+
+  .primary-nav {
+    gap: 0;
+  }
+
+  .primary-nav a {
+    min-width: 48px;
+  }
+
+  .hero-copy h1 {
+    font-size: 64px;
+  }
+
+  .hero-roleline {
+    font-size: 17px;
+  }
+
+  .hero-lead {
+    font-size: 14px;
+  }
+
+  .hero-note {
+    font-size: 9px;
   }
 }
 
