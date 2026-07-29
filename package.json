@@ -1,0 +1,20 @@
+{
+  "name": "qiuye-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "assets": "node tools/process-assets.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "verify": "node tools/verify-build.mjs"
+  },
+  "dependencies": {
+    "lucide": "1.27.0"
+  },
+  "devDependencies": {
+    "sharp": "0.35.3",
+    "vite": "8.1.5"
+  }
+}
