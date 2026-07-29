@@ -44,27 +44,13 @@ let entryIntroTimer;
 
 const entryIntroTemplate = () => `
   <section class="entry-intro" aria-label="秋野作品集入场动画">
-    <div class="entry-intro__topline" aria-hidden="true">
-      <span>QIUYE / 01</span>
-      <span>AI PRODUCT CREATOR</span>
+    <div class="entry-intro__grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="entry-intro__identity" aria-hidden="true">
+      <span class="entry-intro__mark">秋</span>
+      <span>QIUYE / AI PRODUCT CREATOR</span>
     </div>
-    <div class="entry-intro__stage" aria-hidden="true">
-      <span class="entry-intro__panel entry-intro__panel--one">
-        ${picture(projects[1].cover, { loading: 'eager', fetchPriority: 'high', className: 'entry-intro__image' })}
-      </span>
-      <span class="entry-intro__panel entry-intro__panel--two">
-        ${picture(projects[0].cover, { loading: 'eager', fetchPriority: 'high', className: 'entry-intro__image' })}
-      </span>
-      <span class="entry-intro__panel entry-intro__panel--three">
-        ${picture(projects[2].cover, { loading: 'eager', fetchPriority: 'high', className: 'entry-intro__image' })}
-      </span>
-      <p class="entry-intro__name">秋野</p>
-      <p class="entry-intro__caption">把想法变成可体验的作品</p>
-    </div>
-    <div class="entry-intro__bottomline">
-      <span class="entry-intro__progress" aria-hidden="true"><i></i></span>
-      <button class="entry-intro__skip" type="button" data-intro-skip>跳过动画</button>
-    </div>
+    <div class="entry-intro__index" aria-hidden="true">01 — 03</div>
+    <button class="entry-intro__skip" type="button" data-intro-skip>跳过动画</button>
   </section>
 `;
 
@@ -114,7 +100,7 @@ const setupEntryIntro = (hash, cameFromDetail) => {
     },
     { once: true },
   );
-  entryIntroTimer = window.setTimeout(complete, 1850);
+  entryIntroTimer = window.setTimeout(complete, 1080);
 };
 
 const picture = (
